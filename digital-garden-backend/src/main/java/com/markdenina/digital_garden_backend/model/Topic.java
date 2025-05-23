@@ -27,4 +27,10 @@ public class Topic {
     private List<Page> pages = new ArrayList<Page>();
 
     // Getters, setters, constructors
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

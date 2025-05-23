@@ -2,6 +2,7 @@ package com.markdenina.digital_garden_backend.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,4 +40,35 @@ public class User {
     private List<Link> links = new ArrayList<Link>();
 
     // Getters, setters, constructors
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getThemePref() {
+        return themePref;
+    }
+
+    public void setThemePref(String themePref) {
+        this.themePref = themePref;
+    }
 }
