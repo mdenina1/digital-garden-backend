@@ -2,6 +2,7 @@ package com.markdenina.digital_garden_backend.controller;
 
 import com.markdenina.digital_garden_backend.model.Topic;
 import com.markdenina.digital_garden_backend.repository.TopicRepository;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,5 +22,30 @@ public class TopicController {
     public Topic createTopic(@RequestBody Topic topic) {
         topic.setCreatedAt(LocalDateTime.now());
         return topicRepo.save(topic);
+    }
+
+    @GetMapping("/{userId}")
+    public List<Topic> getTopicsByUser(@PathVariable Long userId) {
+        return topicRepo.findByUserId(userId);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Topic> getTopicById(@RequestBody Long id) {
+        return topicRepo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Topic> updateTopic(@PathVariable Long id, @RequestBody Topic updatedTopic) {
+        return topicRepo.findById(id).map(topic -> {
+            topic.setCreatedAt(LocalDateTime.now());
+            topic.setTitle(updatedTopic.getTitle());
+            return ResponseEntity.ok(topicRepo.save(topic));
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<Void> deleteTopic(@PathVariable Long id) {
+        if (!topicRepo.existsById(id)) return ResponseEntity.notFound().build();
+        topicRepo.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
