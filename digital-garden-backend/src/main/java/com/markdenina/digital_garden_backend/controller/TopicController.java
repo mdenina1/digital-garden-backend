@@ -44,6 +44,7 @@ public class TopicController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTopic(@PathVariable Long id) {
         if (!topicRepo.existsById(id)) return ResponseEntity.notFound().build();
         topicRepo.deleteById(id);

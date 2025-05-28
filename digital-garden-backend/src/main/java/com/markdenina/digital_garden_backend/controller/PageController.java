@@ -42,4 +42,11 @@ public class PageController {
             return ResponseEntity.ok(pageRepo.save(page));
         }).orElse(ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePage (@PathVariable Long id) {
+        if (!pageRepo.existsById(id)) return ResponseEntity.notFound().build();
+        pageRepo.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
