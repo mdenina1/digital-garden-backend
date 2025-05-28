@@ -39,6 +39,7 @@ public class TopicController {
         return topicRepo.findById(id).map(topic -> {
             topic.setCreatedAt(LocalDateTime.now());
             topic.setTitle(updatedTopic.getTitle());
+            topic.setDescription(updatedTopic.getDescription());
             return ResponseEntity.ok(topicRepo.save(topic));
         }).orElse(ResponseEntity.notFound().build());
     }

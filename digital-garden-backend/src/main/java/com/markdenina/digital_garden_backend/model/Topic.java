@@ -41,4 +41,12 @@ public class Topic {
     public String getTitle() {
         return title;
     }
+
+    public void setDescription(String Description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
