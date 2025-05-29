@@ -27,11 +27,23 @@ public class Topic {
     private List<Page> pages = new ArrayList<Page>();
 
     // Getters, setters, constructors
+    public Topic() {}
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(LocalDateTime localDateTime) {
+        this.createdAt = localDateTime;
     }
 
     public void setTitle(String title) {
@@ -42,11 +54,23 @@ public class Topic {
         return title;
     }
 
-    public void setDescription(String Description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+
+    public void addPage(Page page) {
+        this.pages.add(page);
     }
 }

@@ -2,7 +2,6 @@ package com.markdenina.digital_garden_backend.controller;
 
 import com.markdenina.digital_garden_backend.model.Topic;
 import com.markdenina.digital_garden_backend.repository.TopicRepository;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

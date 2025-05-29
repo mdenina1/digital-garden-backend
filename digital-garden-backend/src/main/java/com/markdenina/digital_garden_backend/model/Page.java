@@ -29,6 +29,13 @@ public class Page {
     private LocalDateTime updatedAt;
 
     // Getters, setters, constructors
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

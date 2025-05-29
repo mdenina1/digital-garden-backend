@@ -2,7 +2,6 @@ package com.markdenina.digital_garden_backend.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +29,28 @@ public class User {
     private String themePref;
 
     // Bidirectional relationships (optional)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Topic> topics = new ArrayList<Topic>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Page> pages = new ArrayList<Page>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Link> links = new ArrayList<Link>();
 
     // Getters, setters, constructors
+    public User() {}
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+    public Long getId() {
+        return id;
+    }
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(LocalDateTime localDateTime) {
+        this.createdAt = localDateTime;
     }
 
     public String getUsername() {
@@ -59,7 +64,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -70,5 +74,59 @@ public class User {
 
     public void setThemePref(String themePref) {
         this.themePref = themePref;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public void addTopic(Topic topic) {
+        this.topics.add(topic);
+        topic.setUser(this);
+    }
+
+    public void removeTopic(Topic topic) {
+        this.topics.remove(topic);
+        topic.setUser(null);
+    }
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+
+    public void addPage(Page page) {
+        this.pages.add(page);
+        page.setUser(this);
+    }
+
+    public void removePage(Page page) {
+        this.pages.remove(page);
+        page.setUser(null);
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
+    }
+
+    public void addLink(Link link) {
+        this.links.add(link);
+        link.setUser(this);
+    }
+
+    public void removeLink(Link link) {
+        this.links.remove(link);
+        link.setUser(null);
     }
 }
