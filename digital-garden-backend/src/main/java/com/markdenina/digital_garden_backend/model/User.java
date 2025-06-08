@@ -40,6 +40,10 @@ public class User {
 
     // Getters, setters, constructors
     public User() {}
+
+    public User(long id, String username, String mail, String themePref, LocalDateTime createdAt) {
+    }
+
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
@@ -128,5 +132,9 @@ public class User {
     public void removeLink(Link link) {
         this.links.remove(link);
         link.setUser(null);
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
