@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/topic")
+@RequestMapping("/api/topics")
 public class TopicController {
     private final TopicRepository topicRepo;
 
@@ -23,13 +23,13 @@ public class TopicController {
         return topicRepo.save(topic);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public List<Topic> getTopicsByUser(@PathVariable Long userId) {
         return topicRepo.findByUserId(userId);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Topic> getTopicById(@RequestBody Long id) {
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Topic> getTopicById(@PathVariable Long id) {
         return topicRepo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 

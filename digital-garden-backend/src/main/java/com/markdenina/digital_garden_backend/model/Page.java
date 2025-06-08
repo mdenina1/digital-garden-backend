@@ -44,6 +44,8 @@ public class Page {
         this.createdAt = createdAt;
     }
 
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
     public void setTitle(String title) {
         this.title = title;
     }

@@ -9,5 +9,9 @@ public interface LinkRepository extends JpaRepository<Link, Long> {
 
     List<Link> findBySourceTypeAndSourceId(String sourceType, Long sourceId);
 
+    List<Link> findBySourceId(Long sourceId);
+
     List<Link> findByTargetTypeAndTargetId(String targetType, Long targetId);
+
+    List<Link> findByTargetId(Long sourceId);
 }
